@@ -35,5 +35,8 @@ Variáveis de ambiente opcionais (úteis quando a plataforma bloqueia IPs de dat
 - O download passa pela função (stream), então consome tempo e banda do plano da Vercel. Considere regras de rate limit no Vercel Firewall.
 - Instagram costuma bloquear acesso anônimo vindo de datacenter. Verifique em um deploy de preview.
 - O fallback do TikTok usa o serviço de terceiros tikwm.com e pode deixar de funcionar.
+- Sites não gravam direto na galeria. No iPhone/iPad o vídeo é baixado para a memória e aberto na folha de
+  compartilhamento ("Salvar vídeo" → Fotos); exige HTTPS. No Android e no desktop é um download comum (no Android
+  ele aparece na galeria, na pasta Download).
 
 Use apenas para conteúdo que você tem direito de baixar e respeite os termos de cada plataforma.
