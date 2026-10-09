@@ -189,6 +189,24 @@ button:disabled {
   font-weight: 600;
 }
 
+button.secondary {
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--border);
+}
+
+.saved {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+}
+
+.saved p {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+}
+
 footer {
   margin-top: 40px;
 }
