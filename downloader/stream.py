@@ -1,5 +1,6 @@
-"""Faz stream do arquivo do CDN para o navegador (sem bufferizar em memória)."""
+"""Faz stream do arquivo do CDN para o navegador"""
 import ipaddress
+import mimetypes
 import re
 import socket
 from collections.abc import Iterator
@@ -44,6 +45,14 @@ def safe_filename(title: str | None, video_id: str | None, ext: str | None) -> s
 def content_disposition(filename: str) -> str:
     ascii_name = re.sub(r"[^A-Za-z0-9._-]", "_", filename)
     return f"attachment; filename=\"{ascii_name}\"; filename*=UTF-8''{quote(filename)}"
+
+
+def media_type(filename: str, upstream: str | None) -> str:
+    """CDNs às vezes mandam application/octet-stream; com o tipo de vídeo, o celular trata o arquivo como mídia."""
+    guessed = mimetypes.guess_type(filename)[0]
+    if guessed and guessed.startswith("video/"):
+        return guessed
+    return upstream or "application/octet-stream"
 
 
 def open_stream(url: str, headers: dict | None = None) -> tuple[httpx.Client, httpx.Response]:

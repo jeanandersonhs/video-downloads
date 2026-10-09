@@ -100,5 +100,5 @@ def download(url: str = Query(..., max_length=MAX_URL_LENGTH), format: str = Que
     response_headers = {"Content-Disposition": stream.content_disposition(filename), "Cache-Control": "no-store"}
     if length := resp.headers.get("content-length"):
         response_headers["Content-Length"] = length
-    media_type = resp.headers.get("content-type") or "application/octet-stream"
+    media_type = stream.media_type(filename, resp.headers.get("content-type"))
     return StreamingResponse(stream.iterate(client, resp), media_type=media_type, headers=response_headers)
